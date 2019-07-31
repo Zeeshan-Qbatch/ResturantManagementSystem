@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 
 var orderItem = new mongoose.Schema({
 
- o_id: {type: String , required: true},
- i_id: {type: String , required: true},
+ orderId: {type: String , required: true},
+ itemId: {type: String , required: true},
  quantity: {type: Number , required: true},
 
  created : {type : Date},

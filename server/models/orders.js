@@ -1,13 +1,11 @@
-import mongoose from 'mongoose';
+const mongoose=require('mongoose');
 
 const order = new mongoose.Schema({
-
-  o_id: {type: String, required: true},
-  i_id: {type:String,required: true },
-  o_status: {type:String,required: true },
-
+  status: {type:String,required: true },
+  Total_Price : {type: Number},
+  completed_Time: { type: Date},
   created : {type : Date},
   updated : {type : Date}
 });
 
-export default mongoose.model('order', order);
+module.exports = mongoose.model('order' , order);

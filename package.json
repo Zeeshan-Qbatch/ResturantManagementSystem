@@ -10,7 +10,9 @@
     ]
   },
   "scripts": {
-    "start": "webpack-dev-server --open"
+    "start": "npm run frontend & npm run backend",
+    "frontend": "webpack-dev-server --open",
+    "backend": "nodemon server/index.js"
   },
   "repository": {
     "type": "git",
