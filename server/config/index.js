@@ -1,4 +1,4 @@
 
-import './database';
-import './express';
+const database= require('./database');
+const express=require('./express');
 

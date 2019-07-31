@@ -1,6 +1,4 @@
-import mongoose from 'mongoose';
-import { LOCAL_MONGO_URL, PRODUCTION_MONGO_URL } from '../../config/settings';
-import Fixture from './fixture';
+const mongoose= require('mongoose');
 
 const options = {
   useNewUrlParser: true,
