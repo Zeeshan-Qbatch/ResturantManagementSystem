@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
+var Schema= mongoose.Schema;
+const orderItem = new Schema({
 
-var orderItem = new mongoose.Schema({
-
- orderId: {type: String , required: true},
- itemId: {type: String , required: true},
+ orderId: {type: Schema.Types.ObjectId},
+ itemId: {type: Schema.Types.ObjectId},
  quantity: {type: Number , required: true},
 
  created : {type : Date},
