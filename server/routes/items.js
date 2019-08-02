@@ -1,5 +1,6 @@
 const app=require('../config/express');
 const item= require('../models/items');
+const { GetItems }=require('../controllers/items/import-Items');
 app.get('/test', function(req, res) {
   res.send('hello world');
 });
@@ -11,10 +12,15 @@ app.get('/getItemId', function(req, res) {
   });
 });
 app.get('/getAllitems', function(req, res) {
-  item.find({}, function(err, items) {
-    // console.log(users);
-    res.json(items);
+  GetItems().then((result) => {
+    res.send(result);
+  }).catch((error)=>{
+    res.send(error);
   });
+  // item.find({}, function(err, items) {
+  //    console.log(users);
+  //   res.json(items);
+  // });
 });
 app.get('/getItem', function(req, res) {
   //var ObjectId = require('mongodb').ObjectID;

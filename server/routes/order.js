@@ -27,23 +27,16 @@ app.get('/getAllOrders', function(req, res) {
 });
 app.post('/addOrder', function(req, res) {
   order.updateOne(
-    { "_id": req.body.order.id },
-    { customerId: req.body.order.customerId,
+    { customerId: req.body.order.customerId, created:req.body.order.created },{
+    $set: { customerId: req.body.order.customerId,
       status: req.body.order.status,
       Total_Price: req.body.order.totalPrice,
-      completed_Time: req.body.order.url,
+      completed_Time: req.body.order.time,
       created: new Date(),
       updated: null,
+      },
     },
-    // { "_id": req.body.id },
-    // { name: req.body.name,
-    //   price: req.body.password,
-    //   details: req.body.details,
-    //   image: req.body.url,
-    //   created: new Date(),
-    //   updated: new Date(),
-    // },
-    { upsert: true }
+    { upsert:true}
   ).then(function(item) {
     res.send(item);
   });
