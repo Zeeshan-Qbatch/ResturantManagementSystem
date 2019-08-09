@@ -1,6 +1,7 @@
 const app=require('../config/express');
 const item= require('../models/items');
-const { GetItems }=require('../controllers/items/import-Items');
+import {getAllItems} from '../controllers/items/import-Items';
+import addItem  from '../controllers/items/additems';
 app.get('/test', function(req, res) {
   res.send('hello world');
 });
@@ -11,8 +12,8 @@ app.get('/getItemId', function(req, res) {
     res.send(item._id);
   });
 });
-app.get('/getAllitems', function(req, res) {
-  GetItems().then((result) => {
+app.get('/getAllItems', function(req, res) {
+  getAllItems().then((result) => {
     res.send(result);
   }).catch((error)=>{
     res.send(error);
@@ -32,28 +33,12 @@ app.get('/getItem', function(req, res) {
   });
 });
 app.post('/addItem', function(req, res) {
+  const { name, price, details, image } = req.body ;
   console.log('whole Item', req.body);
-  item.updateOne(
-    { "_id": req.body.item.id },
-    { name: req.body.item.name,
-      price: req.body.item.password,
-      details: req.body.item.details,
-      image: req.body.item.url,
-      created: req.body.item.createdTime,
-      updated: null,
-    },
-    // { "_id": req.body.id },
-    // { name: req.body.name,
-    //   price: req.body.password,
-    //   details: req.body.details,
-    //   image: req.body.url,
-    //   created: new Date(),
-    //   updated: new Date(),
-    // },
-    { upsert: true }
-  ).then(function(item) {
-    res.send(item);
-  });
+  addItem({name, price, details, image }).then(result)
+  {
+    res.send(result);
+  }
 });
 app.delete('/deleteItem', function(req, res) {
   // res.send('delete request is called', req.bosy.user);

@@ -1,7 +1,9 @@
-const item= require('../../models/items');
-const GetItems= () =>{
-  item.find({}, function(err, items) {
-    return {name,_id}
-  });
+var app = require('../../config/express');
+const item = require('../../models/items')
+
+const getAllItems = async () => {
+  console.log(' It is (getAllItems) Controller ');
+  const items = await Item.find({});
+  return {items};
 }
-module.exports = GetItems;
+export default getAllItems;
