@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout, Menu, Breadcrumb, Icon, Dropdown } from 'antd';
 
 
-class AppLayout extends React.Component {
+class AdminLayout extends React.Component {
 
   render() {
     const { children } = this.props;
@@ -15,4 +15,4 @@ class AppLayout extends React.Component {
   }
 }
 
-export default AppLayout;
+export default AdminLayout;
