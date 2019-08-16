@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { Layout, Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 const { Header, Sider, Content } = Layout;
-import './styles.css';
-class AdminLayout extends React.Component {
+
+class SiderDemo extends React.Component {
   state = {
     collapsed: false,
   };
@@ -17,9 +17,8 @@ class AdminLayout extends React.Component {
 
   render() {
     return (
-      <Layout style={{ height: '100vh' }}>
-        <Sider 
-           trigger={null} collapsible collapsed={this.state.collapsed}>
+      <Layout>
+        <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.Item key="0">
@@ -29,16 +28,13 @@ class AdminLayout extends React.Component {
             <Menu.Item key="1">
               <Icon type="user" />
               <span>User Panel</span>
-              <Link to="/">
-                User    
-              </Link>
+              <Link to="/settings/mws">
+                  MWS
+                </Link>
             </Menu.Item>
             <Menu.Item key="2">
             <Icon type="shop" />
               <span>Item Panel</span>
-              <Link to="/items">
-                Items    
-              </Link>
             </Menu.Item>
             <Menu.Item key="3">
             <Icon type="setting" />
@@ -53,13 +49,22 @@ class AdminLayout extends React.Component {
               type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={this.toggle}
             />
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine" />
-            <p className="w3-tangerine">Admin Panel</p>
+            <h1>Admin Panel</h1>
           </Header>
+          <Content
+            style={{
+              margin: '24px 16px',
+              padding: 24,
+              background: '#fff',
+              minHeight: 280,
+            }}
+          >
+            Content
+          </Content>
         </Layout>
       </Layout>
     );
   }
 }
 
-export default AdminLayout
+export default SiderDemo

@@ -1,12 +1,105 @@
+
 import React from 'react';
-import ReactDOM from 'react-dom';
-class itemsGrid extends React.Component {
+import 'antd/dist/antd.css';
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions/users';
+import './items-Grid.css'
+import {
+  Form,
+  Input,
+  Select,
+  Checkbox,
+  Button,
+  AutoComplete,
+} from 'antd';
+const { Option } = Select;
+const AutoCompleteOption = AutoComplete.Option;
+
+class itemGrid extends React.Component {
+  state = {
+    confirmDirty: false,
+    autoCompleteResult: [],
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        console.log('Here FrontEnd recieves values from Form : ', values);
+        this.props.registerUser(values);
+      }
+    });
+  };
+
+  handleConfirmBlur = e => {
+    const { value } = e.target;
+    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
+  };
   render() {
-     return (
-        <div>
-           <h1>ITEMS GRID </h1>
-        </div>
-     );
+    const { getFieldDecorator } = this.props.form;
+    const { autoCompleteResult } = this.state;
+
+    const formItemLayout = {
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 8 },
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 16 },
+      },
+    };
+    const tailFormItemLayout = {
+      wrapperCol: {
+        xs: {
+          span: 24,
+          offset: 0,
+        },
+        sm: {
+          span: 16,
+          offset: 8,
+        },
+      },
+    };
+    return (
+      <Form {...formItemLayout} onSubmit={this.handleSubmit} className="login-form">
+
+
+        <Form.Item className="form-item" 
+          label={"Item Name"}
+        >
+          {getFieldDecorator('Item-Name', {
+            rules: [{ required: true, message: 'Please input item Name!', whitespace: true }],
+          })(<Input />)}
+        </Form.Item>
+
+        <Form.Item className="form-item" label="Item Price">
+          {getFieldDecorator('itemPrice',{
+            rules: [{ required: true, message: 'Please input item Price!', whitespace: true }],
+          })(<Input  prefix="US" suffix="$"/>)}
+        </Form.Item>
+        <Form.Item className="form-item" 
+          label={"details"}
+        >
+          {getFieldDecorator('details', {
+            rules: [{ required: false, message: 'Please input details of the item', whitespace: true }],
+          })(<Input />)}
+        </Form.Item>
+        <Form.Item {...tailFormItemLayout}>
+          <Button type="primary" htmlType="submit">
+            Add item
+          </Button>
+        </Form.Item>
+      </Form>
+    );
   }
 }
-export default itemsGrid; 
+const ItemGrid = Form.create({ name: 'register' })(itemGrid);
+
+const mapDispatchToProps = (dispatch) => ({
+  registerUser: (inputObj) => dispatch( registerUser(inputObj) ),
+})
+const mapStateToProps = (state) => ({
+  
+})
+export default connect(mapStateToProps , mapDispatchToProps)(ItemGrid) ;

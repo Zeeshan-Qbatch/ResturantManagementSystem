@@ -12,8 +12,10 @@ import Login from '../components/authentication/Login.jsx';
 import AdminGrid from '../components/admin-dashbaord/admin-dashboard.jsx'
 //import ForgotPassword from '../components/authentication/ForgotPassword.jsx'
 //import ResetPassword from '../components/authentication/ResetPassword.jsx'
-import AppLayout from '../layouts/EmptyLayout.jsx';
+import AppLayout from '../layouts/AppLayout.jsx';
 import AdminLayout from '../layouts/AdminLayout.jsx';
+import itemsGrid from '../components/items_dashboard/items_Grid.jsx'
+
 const AUTHORIZATION = localStorage.getItem('loginToken');
 axios.defaults.headers.common['Authorization'] = `JWT ${AUTHORIZATION}`;
 
@@ -47,6 +49,7 @@ class RenderRoutes extends React.Component {
           </Route>
           <AppLayoutRoute path="/login" component={Login} user={user} />
           <Route path="/register" component={Register} user={user} />
+          <Route path="/items" component={itemsGrid} user={user} />
           <AdminLayoutRoute path="/admin-dashboard" component={AdminGrid} user={user}/>
         </Switch>
       </Router>
