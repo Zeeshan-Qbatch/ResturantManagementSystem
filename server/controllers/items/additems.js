@@ -1,11 +1,11 @@
 import Item from '../../models/items'
 
-const addItem = ({ name ,  price ,  details ,  image }) => {
+const addItem = ({ itemName ,  itemPrice ,  details ,  imageUrl }) => {
   
     console.log(' It is (addItem) Controller ');
-  
-      const res = Item.updateOne( {name:name }, 
-        {price:price , details:details , image:image , created:new Date()} , 
+    console.log('itemName:',itemName,'itemPrice:',itemPrice)
+      const res = Item.updateOne( {name:itemName }, 
+        {price:itemPrice , details:details , image:imageUrl , created:new Date()} , 
         {upsert:true}
       );
       return res ;

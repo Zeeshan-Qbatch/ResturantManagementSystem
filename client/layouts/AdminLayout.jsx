@@ -1,7 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Layout, Menu, Icon } from 'antd';
+import { connect } from 'react-redux';
+
+import { Upload, Button,Layout, Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
+import { logoutUser } from '../actions/users';
+
 const { Header, Sider, Content } = Layout;
 import './styles.css';
 class AdminLayout extends React.Component {
@@ -14,7 +18,11 @@ class AdminLayout extends React.Component {
       collapsed: !this.state.collapsed,
     });
   };
-
+  logout = () => {
+    console.log('logout button is clicked');
+    // const { logoutUser } = this.props;
+    this.props.logoutUser();
+  }
   render() {
     return (
       <Layout style={{ height: '100vh' }}>
@@ -22,7 +30,7 @@ class AdminLayout extends React.Component {
            trigger={null} collapsible collapsed={this.state.collapsed}>
           <div className="logo" />
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-          <Menu.Item key="0">
+            <Menu.Item key="0">
               <Icon type="home" />
               <span>Home</span>
             </Menu.Item>
@@ -44,6 +52,10 @@ class AdminLayout extends React.Component {
             <Icon type="setting" />
               <span>Setting</span>
             </Menu.Item>
+            <Menu.Item key="4" onClick={this.logout}>
+            <Icon type="logout" />
+              <span>Log out</span>
+            </Menu.Item>
           </Menu>
         </Sider>
         <Layout>
@@ -62,4 +74,12 @@ class AdminLayout extends React.Component {
   }
 }
 
-export default AdminLayout
+const mapStateToProps = ({ user }) => ({ user });
+
+const mapDispatchToProps = (dispatch) => ({
+  logoutUser: () => {
+    return dispatch(logoutUser());
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true })(AdminLayout);

@@ -33,12 +33,11 @@ app.get('/getItem', function(req, res) {
   });
 });
 app.post('/addItem', function(req, res) {
-  const { name, price, details, image } = req.body ;
+  const { itemName, itemPrice, details, imageUrl } = req.body ;
   console.log('whole Item', req.body);
-  addItem({name, price, details, image }).then(result)
-  {
-    res.send(result);
-  }
+  addItem({itemName, itemPrice, details, imageUrl }).then(function(item) {
+    res.send(item);
+  });
 });
 app.delete('/deleteItem', function(req, res) {
   // res.send('delete request is called', req.bosy.user);

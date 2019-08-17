@@ -6,7 +6,7 @@ export const loginUser = ({ email, password }) => (dispatch) => {
   console.log('action login is called',email,password);
   dispatch({ type: 'LOGIN_USER_REQUEST' });
 
-  const url = 'http://localhost:5000/api/v1/login';
+  const url = 'http://localhost:5000/addItem';
 
   return axios.post(url, {
     email,
@@ -35,7 +35,12 @@ export const loginUser = ({ email, password }) => (dispatch) => {
     dispatch({ type: 'LOGIN_USER_FAILED' });
   });
 };
+export const logoutUser = () => (dispatch) => {
+  console.log('in the logout action');
+  localStorage.removeItem('loginToken');
 
+  return dispatch({ type: 'LOGOUT_USER_SUCCESS' });
+};
 export const registerUser = ({ name, email, password, role, shippingAddress,availabilityStatus,contact }) => (dispatch) => {
   console.log("register user action is called");
   dispatch({ type: 'REGISTER_USER_REQUEST' });

@@ -1,6 +1,6 @@
 .login-form {
-  max-width: 300px;
-  position: absolute;
+  max-width: 500px;
+  position: relative;
   top: 45%;
   left: 50%;
   margin: -180px 0 0 -180px;
@@ -14,10 +14,10 @@
 }
 .login-form-button {
   width: 100%;
+  position: relative;
 }
 .login-form-item {
- height: 20px
-}
-.Form-heading {
-  top: 200px;
-}
+  top:50%;
+  height: 20px
+ }
+ 

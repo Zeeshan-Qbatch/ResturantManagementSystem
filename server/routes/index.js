@@ -2,7 +2,7 @@
 //import user from './user';
 import express from 'express';
 import path from 'path';
-import ItemsRouter from './items'
+import './items'
 import AuthRouter from './auth'
 // import UsersRouter from './users'
 import app from '../config/express'

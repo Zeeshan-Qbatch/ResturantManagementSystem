@@ -85,7 +85,7 @@ const AppLayoutRoute = ({ component: Component, user, ...rest}) => {
   if (!user._id ) {
     showLayout = false;
   }
-  console.log("hye from applayout");
+  console.log("hye from applayout ");
   return (
     <Route {...rest} render={matchProps => (
       showLayout
@@ -98,27 +98,25 @@ const AppLayoutRoute = ({ component: Component, user, ...rest}) => {
 };
 const AdminLayoutRoute = ({ component: Component, user, ...rest }) => {
   const redirectToRelativePage = () => {
-    if (!user._id) {
+    if (!user._id ) {
       return (<Redirect to='/login' />);
-    } else if (user.admin) {
+    } else if (user.role==='admin') {
       return (<Redirect to='/admin-dashboard' />);
     }
-
-    return (<Redirect to='/items-repricer' />);
   }
 
   let showLayout = true;
-  if (!user._id || !user.admin) {
+  if (!user._id ) {
     showLayout = false;
   }
-  console.log('show layout is ',showLayout)
+  console.log('show layout in admin is  ',showLayout)
   return (
     <Route {...rest} render={matchProps => (
       showLayout
-        ? redirectToRelativePage()
-        : (<AdminLayout>
+        ? (<AdminLayout>
           <Component {...matchProps} />
         </AdminLayout>)
+        : redirectToRelativePage()
     )} />
   )
 };

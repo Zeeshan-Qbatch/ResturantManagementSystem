@@ -1,6 +1,6 @@
 .login-form {
   max-width: 300px;
-  position: absolute;
+  position: relative;
   top: 45%;
   left: 50%;
   margin: -180px 0 0 -180px;
@@ -20,4 +20,14 @@
 }
 .Form-heading {
   top: 200px;
+}
+.w3-tangerine {
+  position: relative;
+  font-family: "Tangerine", serif;
+  font-size:150px;
+  font-style: italic;
+  font-style:bold  
+}
+.sider{
+  height: relative;
 }

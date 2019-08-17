@@ -63,6 +63,11 @@ const user = (state = initialState, action) => {
         fetching: false
       };
     }
+    case 'LOGOUT_USER_SUCCESS': {
+      return {
+        ...initialState
+      };
+    }
     default: {
       return state;
     }

@@ -44,7 +44,7 @@ class NormalLoginForm extends React.Component {
             />,
           )}
         </Form.Item>
-        <Form.Item>
+        <Form.Item className="login-form-item">
           {getFieldDecorator('remember', {
             valuePropName: 'checked',
             initialValue: true,
