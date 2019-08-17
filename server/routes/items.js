@@ -35,14 +35,14 @@ app.get('/getItem', function(req, res) {
 app.post('/addItem', function(req, res) {
   const { itemName, itemPrice, details, imageUrl } = req.body ;
   console.log('whole Item', req.body);
-  addItem({itemName, itemPrice, details, imageUrl }).then(function(item) {
-    res.send(item);
+  addItem({itemName, itemPrice, details, imageUrl }).then(function(result) {
+    res.send(result);
   });
 });
 app.delete('/deleteItem', function(req, res) {
   // res.send('delete request is called', req.bosy.user);
-  console.log('this is delete api', req.body.id);
-  item.deleteOne({ "_id": req.body.id })
+  console.log('this is itemId in api is', req.query.itemId);
+  item.deleteOne({ "_id": req.body.itemId })
   .then(function(item) {
     res.send(item);
   });

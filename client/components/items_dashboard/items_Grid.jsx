@@ -2,7 +2,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import { connect } from 'react-redux';
-import { addItem } from '../../actions/items';
+import { addItem,deleteItem } from '../../actions/items';
 import './items-Grid.css'
 import {
   Form,
@@ -28,7 +28,9 @@ class itemGrid extends React.Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Here FrontEnd recieves values from Form : ', values);
-        this.props.addItem(values);
+        //this.props.addItem(values);
+        const itemId="5d57f94853c694e71c85ad9e"
+        this.props.deleteItem(itemId);
       }
     });
   };
@@ -116,6 +118,7 @@ const ItemGrid = Form.create({ name: 'register' })(itemGrid);
 
 const mapDispatchToProps = (dispatch) => ({
   addItem: (inputObj) => dispatch( addItem(inputObj) ),
+  deleteItem: (inputID) => dispatch( deleteItem(inputID))
 })
 const mapStateToProps = (state) => ({
   
